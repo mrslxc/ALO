@@ -17,7 +17,7 @@ public class Account {
     }
 
     public void Credit(double montant) {
-        if (montant > 0) {
+        if (montant < 0) {
             System.out.println("Le montant doit être supérieur que 0");
         } else {
             accountBalance += montant;

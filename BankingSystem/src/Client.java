@@ -11,7 +11,7 @@ public class Client {
     public Client(String nomClient, String prenomClient, int idClient, LocalDate birthday) {
         this.nomClient = nomClient;
         this.prenomClient = prenomClient;
-        IdClient = idClient;
+        this.IdClient = idClient;
         this.birthday = birthday;
     }
 

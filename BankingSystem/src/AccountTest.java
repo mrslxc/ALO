@@ -1,6 +1,7 @@
 public class AccountTest {
     public static void main(String[] args) {
-        testerDebitNegatif();
+        testerAffichage();
+        testerCreditNegatif();
     }
 
     private static void testerAffichage() {
