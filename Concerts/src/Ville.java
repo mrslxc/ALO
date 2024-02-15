@@ -11,6 +11,10 @@ public class Ville {
         return nomVille;
     }
 
+    public String getVille() {
+        return nomVille;
+    }
+
     public double getNbMaxSpectateursAuMetreCarre() {
         return nbMaxSpectateursAuMetreCarre;
     }

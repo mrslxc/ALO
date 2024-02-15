@@ -3,9 +3,8 @@ public class Salle {
     private int longeurSalle;
     private int largeurScene;
     private int longeurScene;
+
     private Ville ville;
-
-
 
     // Création du constructeur pour la classe Salle
     public Salle(int largeurSalle, int longeurSalle, int largeurScene, int longeurScene, Ville ville) {
@@ -24,15 +23,17 @@ public class Salle {
         return longeurSalle;
     }
 
+    public Ville getVille() {
+        return ville;
+    }
     public int getLargeurScene() {
         return largeurScene;
     }
 
     public int getLongeurScene() {
-        return longeurScene;
-    }
+        return longeurScene;}
 
-    public int calculMetreCarre() {
-        return longeurSalle * largeurSalle - longeurScene * largeurScene;
+    public int getSuperficie() {
+        return longeurSalle * largeurSalle - largeurScene * longeurScene;
     }
 }

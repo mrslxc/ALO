@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.List;
 
 public class Billeterie {
     public static void main(String[] args) {
@@ -10,38 +11,18 @@ public class Billeterie {
         Salle Arena = new Salle(100, 30, 30, 15, Bruxelles);
         Salle ChatNoir = new Salle(15, 6, 6, 3, Carouge);
 
-        Concert Mozart = new Concert("Mozart", LocalDate.of(2020, 07, 25), Stravinsky);
-        Concert Chopin = new Concert("Chopin", LocalDate.of(2020, 07, 26), Stravinsky);
-        Concert Stromae = new Concert("Stromae", LocalDate.of(2020, 10, 10), Arena);
-        Concert Angele = new Concert("Angèle", LocalDate.of(2020, 03, 13), ChatNoir);
+        Concert Mozart = new Concert("Mozart", LocalDate.of(2020, 07, 25),0,  Stravinsky);
+        Concert Chopin = new Concert("Chopin", LocalDate.of(2020, 07, 26), 0, Stravinsky);
+        Concert Stromae = new Concert("Stromae", LocalDate.of(2020, 10, 10), 0, Arena);
+        Concert Angele = new Concert("Angèle", LocalDate.of(2020, 03, 13), 0, ChatNoir);
 
-        acheterBillet(Stromae);
-        achatBillet(Angele);
-        achatBillet(Mozart);
-        achatBillet(Chopin);
-    }
-
-    public static void acheterBillet(Concert nomConcert) {
-        if (nomConcert.isComplet()) {
-            System.out.println("Le concert est complet");
-        } else {
-            System.out.println("Le concert n'est pas complet");
-        }
-    }
-
-    public static boolean achatUnBillet(Concert nomConcert) {
-        if (nomConcert.isComplet()) {
-            return false;
-        } nomConcert.achatBillet();
-        return true;
-    }
-
-    public static void achatBillet(Concert nomConcert) {
-        for (int i = 0; i <= 8000; i++) {
-            if (!achatUnBillet(nomConcert)) {
-                System.out.println("Le concert est complet");
-                break;
+        Concert[] ListeConcert = new Concert[] {Mozart, Chopin, Stromae, Angele};
+        
+        for (Concert unConceret : ListeConcert ) {
+            for (int i = 0; i < 8000; i++) {
+                unConceret.setNbTicketsVendus(1);
             }
+            System.out.println(unConceret.toString());
         }
     }
 }

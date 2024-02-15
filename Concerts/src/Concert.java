@@ -4,17 +4,14 @@ import java.time.format.DateTimeFormatter;
 public class Concert {
     private String nomArtiste;
     private LocalDate date;
-    private boolean IsComplet;
     private int nbTicketsVendus;
     private Salle salle;
 
-    private Ville ville;
-
     // Création du constructeur de la classe Concert
-    public Concert(String nomArtiste, LocalDate date, Salle salle) {
+    public Concert(String nomArtiste, LocalDate date, int nbTicketsVendus, Salle salle) {
         this.nomArtiste = nomArtiste;
         this.date = date;
-        this.IsComplet = false;
+        this.nbTicketsVendus = nbTicketsVendus;
         this.salle = salle;
     }
 
@@ -27,21 +24,24 @@ public class Concert {
     }
 
     public boolean isComplet() {
-        return IsComplet;
+        if (getNbTicketsVendus() < this.salle.getVille().getNbMaxSpectateursAuMetreCarre() * salle.getSuperficie()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public int getNbTicketsVendus() {
         return nbTicketsVendus;
     }
 
-    public void achatBillet() {
-        if (!isComplet()) {
-            if (nbTicketsVendus < ville.getNbMaxSpectateursAuMetreCarre()) {
-                if (ville.getNbMaxSpectateursAuMetreCarre() == nbTicketsVendus) {
-                    this.IsComplet = true;
-                }
-                nbTicketsVendus += 1;
-            }
+    public Salle getSalle() {
+        return salle;
+    }
+
+    public void setNbTicketsVendus(int nbTicketsVendus) {
+        if (this.isComplet() == false) {
+            this.nbTicketsVendus += nbTicketsVendus;
         }
     }
 
