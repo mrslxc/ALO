@@ -1,9 +1,16 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+/***
+ * Classe Main, appelée par défaut dans les programmes Java
+ */
 public class Main {
+    /***
+     * méthode main, la première méthode appelée lors de l'exécution d'un programme Java
+     * @param args : elle peut prendre en paramètre un tableau de strings, mais pour le moment on ne se soucie pas de ça.
+     */
     public static void main(String[] args) {
-        Voiture maFerrari = new Voiture("Ferrari", "Noir", 2020, 19000,
-                "Très bonne état");
-        System.out.println(maFerrari);
+        //instanciation d'un garage
+        Garage garage = new Garage();
+        //appel de la méthode getMoyenne
+        garage.createDefaultGarage();
+
     }
 }

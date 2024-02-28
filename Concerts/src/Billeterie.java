@@ -18,11 +18,11 @@ public class Billeterie {
 
         Concert[] ListeConcert = new Concert[] {Mozart, Chopin, Stromae, Angele};
         
-        for (Concert unConceret : ListeConcert ) {
+        for (Concert UnConcert : ListeConcert ) {
             for (int i = 0; i < 8000; i++) {
-                unConceret.setNbTicketsVendus(1);
+                UnConcert.setNbTicketsVendus(1);
             }
-            System.out.println(unConceret.toString());
+            System.out.println(UnConcert.toString());
         }
     }
 }

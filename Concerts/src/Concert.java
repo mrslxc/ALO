@@ -48,7 +48,14 @@ public class Concert {
     @Override
     public String toString() {
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return "Artiste : " + getNomArtiste() + " | Date : " + dateFormat.format(getDate()) + " | Complet : "
-                + isComplet() + " | Billets vendus : " + getNbTicketsVendus();
+
+        String complet;
+        if (isComplet() == true) {
+            complet = "Complet !";
+        } else {
+            complet = "Non complet";
+        }
+
+        return "Artiste : " + getNomArtiste() + " | Date : " + dateFormat.format(getDate()) + " | Complet : " + complet + " | Billets vendus : " + getNbTicketsVendus();
     }
 }

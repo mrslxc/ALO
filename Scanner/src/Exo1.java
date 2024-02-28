@@ -12,6 +12,5 @@ public class Exo1 {
         while (scanner.hasNext()) {
             System.out.println(scanner.next());
         }
-        scanner.close();
     }
 }
