@@ -14,12 +14,13 @@ public class Informations {
         }
     }
 
-    public static ArrayList<Personne> ScannerTexte(String nomFichier) throws FileNotFoundException {
-        Scanner sc_ligne = new Scanner(new File(nomFichier));
-        ArrayList<Personne> listePersonne = new ArrayList<>();
-        while (sc_ligne.hasNextLine()) {
-            Scanner sc_element = new Scanner(sc_ligne.nextLine());
-            sc_element.useDelimiter(";");
+    public static ArrayList<Personne> ScannerTexte(String nomFichier) {
+        try {
+            Scanner sc_ligne = new Scanner(new File(nomFichier));
+            ArrayList<Personne> listePersonne = new ArrayList<>();
+            while (sc_ligne.hasNextLine()) {
+                Scanner sc_element = new Scanner(sc_ligne.nextLine());
+                sc_element.useDelimiter(";");
                 while (sc_element.hasNext()) {
                     String prenom = sc_element.next();
                     String nom = sc_element.next();
@@ -33,8 +34,11 @@ public class Informations {
                     Personne personne = new Personne(prenom, nom, age, localDate);
                     listePersonne.add(personne);
                 }
-
+            }
+            return listePersonne;
+        } catch (FileNotFoundException e) {
+            System.out.println("Le fichier n'existe pas");
         }
-        return listePersonne;
+        return null;
     }
 }

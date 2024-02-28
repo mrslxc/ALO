@@ -1,0 +1,8 @@
+nomPlanete;rayonMoyen;circonferenceOrbite;nbSatellites;listeSatelites
+mercure;2439;359976856;0
+venus;6051;679892378;0
+terre;6371;939887974;1;lune
+mars;3389;1429085052;2;phobos;deimos;
+jupiter;69911;4887595931;4;io;europa;ganymede;callisto
+saturne;58232;8957504604;7;mimas;enceladus;tethys;dione;rhea;titan;lapetus
+uranus;25362;18026802831;5;miranda;ariel;umbriel;titania;oberon
