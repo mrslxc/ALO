@@ -1,47 +1,107 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Informations {
     public static void main(String[] args) {
-        ArrayList<Planetes> listePlanetes = scannerPlanetes("systemeSolaire.csv");
+        // Elle permet de lire les données en faisant une boucle
+        // lireDonnes("planetes.txt").forEach(System.out::println);
+        ArrayList<Planetes> listePlanetes = lireDonnes("systemeSolaire.txt");
 
-        for (Planetes planetes : listePlanetes) {
-            System.out.println(planetes);
+        for (Planetes planete : listePlanetes) {
+            System.out.println(planete);
         }
+
+        calculerMaxCirconference(listePlanetes);
+        calculerMinCirconference(listePlanetes);
+        calculerTotalSatellite(listePlanetes);
+        calculerRayonMoyenPlanetes(listePlanetes);
+        System.out.println(calculerPlaneteAucunSatellite(listePlanetes));
+
+
     }
 
-    public static ArrayList<Planetes> scannerPlanetes(String nomFichier) {
-        ArrayList<Planetes> listePlanetes = new ArrayList<>();
+    public static ArrayList<Planetes> lireDonnes(String nomFichier) {
+        ArrayList<Planetes> tableauPlanete = new ArrayList();
         try {
-            Scanner sc_ligne = new Scanner(new File(nomFichier));
-            sc_ligne.nextLine(); // Ignorer la première ligne
+            Scanner sc = new Scanner(new File(nomFichier));
+            sc.nextLine();
+            while (sc.hasNextLine()){
+                String ligne = sc.nextLine();
+                Scanner sc1 = new Scanner(ligne);
+                String nomPlanete = sc1.next();
+                int rayon = sc1.nextInt();
+                long circonf = sc1.nextLong();
+                int satelite = sc1.nextInt();
 
-            while (sc_ligne.hasNextLine()) {
-
-                Scanner sc_element = new Scanner(sc_ligne.nextLine());
-                sc_ligne.useDelimiter(";");
-
-                while (sc_ligne.hasNext()) {
-                    // Lire les informations de base de la planète
-                    String nomPlanete = sc_element.next();
-                    int rayonMoyen = sc_element.nextInt();
-                    int circonferenceOrbite = sc_element.nextInt();
-                    int nbSatellites = sc_element.nextInt();
-
-                    // Créer l'objet Planetes avec les informations lues
-                    Planetes planete = new Planetes(nomPlanete, rayonMoyen, circonferenceOrbite, nbSatellites);
-                    listePlanetes.add(planete);
-                }
-                sc_element.close(); // Fermer le scanner de ligne
+                tableauPlanete.add(new Planetes(nomPlanete, rayon, circonf, satelite));
             }
-            sc_ligne.close(); // Fermer le scanner de fichier
-
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
         }
-        return listePlanetes;
+        return tableauPlanete;
     }
 
+    public static void calculerMaxCirconference(ArrayList<Planetes> tableauPlanete) {
+        long maxCirconf = 0;
+        String nomPlanete = "";
+
+        for (Planetes planete : tableauPlanete) {
+            if (planete.getCirconference() > maxCirconf) {
+                maxCirconf = planete.getCirconference();
+                nomPlanete = planete.getNom();
+            }
+        }
+        System.out.println("La planète avec la plus grande circonférence est " +
+                nomPlanete + " avec une circonférence de " + maxCirconf + " km.");
+    }
+
+    public static void calculerMinCirconference(ArrayList<Planetes> tableauPlanete) {
+        long minCirconf = 0;
+        String nomPlanete = "";
+
+        for (Planetes planete : tableauPlanete) {
+            if (planete.getCirconference() < minCirconf) {
+                minCirconf = planete.getCirconference();
+                nomPlanete = planete.getNom();
+            }
+        }
+        System.out.println("La planète avec la plus petite circonférence est " +
+                nomPlanete + " avec une circonférence de " + minCirconf + " km.");
+    }
+
+    public static void calculerTotalSatellite(ArrayList<Planetes> tableauPlanete) {
+        int totalSatellite = 0;
+
+        for (Planetes planete : tableauPlanete) {
+            totalSatellite += planete.getNmbSatelite();
+        }
+        System.out.println("Le nombre total de satellites dans le système solaire est " + totalSatellite + ".");
+    }
+
+    public static void calculerRayonMoyenPlanetes(ArrayList<Planetes> tableauPlanete) {
+        int totalRayon = 0;
+        int moyenneRayon = 0;
+
+        for (Planetes planete : tableauPlanete) {
+            totalRayon += planete.getRayonMoyen();
+        }
+        moyenneRayon = totalRayon / tableauPlanete.size();
+        DecimalFormat df = new DecimalFormat("###,###.##");
+        System.out.println("Le rayon moyen de ces planètes est de " + df.format(moyenneRayon) + " km.");
+    }
+
+    public static String calculerPlaneteAucunSatellite(ArrayList<Planetes> tableauPlanete) {
+        int planeteAucunSatellite = 0;
+
+        for (Planetes planetes : tableauPlanete) {
+            if (planetes.getNmbSatelite() == 0) {
+                return "Il y a au moins une planète parmi cette liste qui n'a aucun satellite (il 'sagit de " +
+                        planetes.getNom() + ").";
+            }
+        }
+        return "Aucune planète";
+    }
 }

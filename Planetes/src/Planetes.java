@@ -1,44 +1,45 @@
 import java.util.ArrayList;
 
 public class Planetes {
-    private String nomPlanete;
+    private String nom;
     private int rayonMoyen;
-    private int circonferenceOrbite;
-    private int nbSatellites;
+    private  long circonference;
+    private int nmbSatelite;
+    private ArrayList<String> satelite;
 
-    private ArrayList<String> satellites;
-
-    public Planetes(String nomPlanete, int rayonMoyen, int circonferenceOrbite, int nbSatellites) {
-        this.nomPlanete = nomPlanete;
+    public Planetes(String nom, int rayonMoyen, long circonference, int nmbSatelite) {
+        this.nom = nom;
         this.rayonMoyen = rayonMoyen;
-        this.circonferenceOrbite = circonferenceOrbite;
-        this.nbSatellites = nbSatellites;
+        this.circonference = circonference;
+        this.nmbSatelite = nmbSatelite;
     }
 
-    public void ajouterSatellite (String satellite) {
-        satellites.add(satellite);
+    public String getNom() {
+        return nom;
     }
 
-    public String getNomPlanete() {
-        return nomPlanete;
+    public long getCirconference() {
+        return circonference;
+    }
+
+    public int getNmbSatelite() {
+        return nmbSatelite;
     }
 
     public int getRayonMoyen() {
         return rayonMoyen;
     }
 
-    public int getCirconferenceOrbite() {
-        return circonferenceOrbite;
-    }
-
-    public int getNbSatellites() {
-        return nbSatellites;
-    }
-
     @Override
     public String toString() {
-        System.out.println("Voici la liste des planètes du système solaire :");
-        return "Nom : " + nomPlanete + " [rayon : " + rayonMoyen + " km]" + " [circonférence de l'orbite : " + circonferenceOrbite + " km]" +
-                " [nombre de satellites : " + nbSatellites + "]";
+        if (this.getNmbSatelite() == 0) {
+            return this.getNom() + " " + "[rayon: " + this.getRayonMoyen() +
+                "] [circonférence de l'orbite : " + this.getCirconference()
+                + "] [aucun satellite]";
+        } else {
+            return this.getNom() + "[rayon: " + this.getRayonMoyen() +
+                "] [circonférence de l'orbite : " + this.getCirconference()
+                + "] [" + this.getNmbSatelite() + " satellites]";
+        }
     }
 }
