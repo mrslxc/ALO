@@ -19,22 +19,20 @@ public class Informations {
         calculerTotalSatellite(listePlanetes);
         calculerRayonMoyenPlanetes(listePlanetes);
         System.out.println(calculerPlaneteAucunSatellite(listePlanetes));
-
-
     }
 
     public static ArrayList<Planetes> lireDonnes(String nomFichier) {
         ArrayList<Planetes> tableauPlanete = new ArrayList();
         try {
-            Scanner sc = new Scanner(new File(nomFichier));
-            sc.nextLine();
-            while (sc.hasNextLine()){
-                String ligne = sc.nextLine();
-                Scanner sc1 = new Scanner(ligne);
-                String nomPlanete = sc1.next();
-                int rayon = sc1.nextInt();
-                long circonf = sc1.nextLong();
-                int satelite = sc1.nextInt();
+            Scanner sc_ligne = new Scanner(new File(nomFichier));
+            sc_ligne.nextLine();
+            while (sc_ligne.hasNextLine()){
+                String ligne = sc_ligne.nextLine();
+                Scanner sc_element = new Scanner(ligne);
+                String nomPlanete = sc_element.next();
+                int rayon = sc_element.nextInt();
+                long circonf = sc_element.nextLong();
+                int satelite = sc_element.nextInt();
 
                 tableauPlanete.add(new Planetes(nomPlanete, rayon, circonf, satelite));
             }
