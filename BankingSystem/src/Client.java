@@ -1,28 +1,43 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Client {
-    String nomClient;
-    String prenomClient;
-    int IdClient;
+    private String nom;
+    private String prenom;
+    private int ID;
+    private LocalDate birthdate;
+    private ArrayList<Account> accounts;
 
-    LocalDate birthday;
-
-    public Client(String nomClient, String prenomClient, int idClient, LocalDate birthday) {
-        this.nomClient = nomClient;
-        this.prenomClient = prenomClient;
-        this.IdClient = idClient;
-        this.birthday = birthday;
+    // Builder d'instance
+    public Client(int ID, String nom, String prenom, LocalDate birthDate){
+        this.nom = nom;
+        this.prenom = prenom;
+        this.ID = ID;
+        this.birthdate = birthDate;
+        this.accounts = new ArrayList<Account>();
     }
 
-    public String toString() {
-        /*
-        DateTimeFormatter = permet de mettre en forme une date suivant son schéma indiqué
+    public ArrayList<Account> getAccounts(){
+        return accounts;
+    }
 
-        BirthdayFormat.format("attribut") = on récupère la variable qui est une date à partir du "LocalDate"
-         */
-        DateTimeFormatter BirthdayFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return "Identifiant : " + IdClient + " | Nom : " + nomClient + " | Prénom : " + prenomClient +
-                " | Date naissance : " + BirthdayFormat.format(birthday);
+    public Account getAccount(String numCompte){
+        for (int i = 0; i < accounts.size(); i++) {
+            Account account = accounts.get(i);
+            if(account.getAccountNumber().equals(numCompte)){
+                return account;
+            }
+        }
+        return null;
+    }
+
+    public void addAccount(Account account){
+        accounts.add(account);
+    }
+
+    public String toString(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return "Client<Nom=" + nom + ", Prénom=" + prenom + ", ID=" + ID + ", Date de naissance=" + formatter.format(birthdate) + ", Comptes=" + accounts + ">";
     }
 }

@@ -1,0 +1,5 @@
+A111 credit 50
+A112 credit 70
+A121 credit 100
+A134 credit 200,50
+A121 debit 70,50

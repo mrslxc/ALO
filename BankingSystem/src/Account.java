@@ -1,40 +1,38 @@
 public class Account {
     private String accountNumber;
+    private double balance;
 
-    private double accountBalance;
-
-    public Account(String accountNumber) {
+    // Builder d'instance
+    public Account(String accountNumber){
         this.accountNumber = accountNumber;
-        this.accountBalance = 0;
+        this.balance = 0.0;
     }
 
-    public String getAccountNumber() {
+    public String toString(){
+        return "Account<accountNumber=" + accountNumber + ", balance=" + balance + ">";
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public String getAccountNumber(){
         return accountNumber;
     }
 
-    public double getAccountBalance() {
-        return accountBalance;
-    }
-
-    public void Credit(double montant) {
-        if (montant < 0) {
-            System.out.println("Le montant doit être supérieur que 0");
+    public void credit(double amount){
+        if (amount > 0) {
+            balance += amount;
         } else {
-            accountBalance += montant;
+            System.out.println("Error: cannot credit negative amount.");
         }
     }
 
-    public void Debit(double montant) {
-        if (montant > 0 && accountBalance >= montant) {
-            accountBalance -= montant;
+    public void debit(double amount){
+        if (amount > 0 && balance >= amount) {
+            balance -= amount;
         } else {
-
-            System.out.println("Un solde négatif ne peut être disponible.");
+            System.out.println("Error: cannot debit negative amount or overdraft account.");
         }
-    }
-
-    @Override
-    public String toString() {
-        return "Numéro de compte : " + getAccountNumber() + " | Balance du compte : " + getAccountBalance();
     }
 }
