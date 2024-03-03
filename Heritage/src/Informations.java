@@ -31,20 +31,22 @@ public class Informations {
             Scanner sc_ligne = new Scanner(new File(nomFichier));
             while (sc_ligne.hasNextLine()) {
                 Scanner sc_element = new Scanner(sc_ligne.nextLine());
+                sc_element.useDelimiter("/");
                 String nom = sc_element.next();
                 String prenom = sc_element.next();
+                String date = sc_element.next();
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-                LocalDate date = LocalDate.parse(sc_element.next(), formatter);
+                LocalDate localDate = LocalDate.parse(date, formatter);
 
                 String categorie = sc_element.next();
 
                 if (categorie.equals("professeur")) {
                     String matiere = sc_element.next();
-                    tableauPersonne.add(new Professeur(nom, prenom, date, categorie, matiere));
+                    tableauPersonne.add(new Professeur(nom, prenom, localDate, categorie, matiere));
                 } else {
                     String niveau = sc_element.next();
-                    tableauPersonne.add(new Eleves(nom, prenom, date, categorie, niveau));
+                    tableauPersonne.add(new Eleves(nom, prenom, localDate, categorie, niveau));
                     }
                 }
             } catch (FileNotFoundException e) {

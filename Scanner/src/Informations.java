@@ -22,16 +22,11 @@ public class Informations {
             // On crée un scanner pour lire chaque ligne du fichier
             // La boucle permet de lire chaque ligne du fichier
             while (sc_ligne.hasNextLine()) {
-
                 // On crée un scanner pour lire chaque élément de la ligne
                 Scanner sc_element = new Scanner(sc_ligne.nextLine());
-
                 // On change le délimiteur pour lire chaque élément de la ligne
                 sc_element.useDelimiter(";");
-
                 // La boucle permet de lire chaque élément de la ligne
-                while (sc_element.hasNext()) {
-
                     // On scanne chaque élément que le fichier contient en prenant compte des types de données
                     String prenom = sc_element.next();
                     String nom = sc_element.next();
@@ -45,7 +40,6 @@ public class Informations {
 
                     Personne personne = new Personne(prenom, nom, age, localDate);
                     listePersonne.add(personne);
-                }
             }
             return listePersonne;
         } catch (FileNotFoundException e) {

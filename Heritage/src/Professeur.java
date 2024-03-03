@@ -9,7 +9,7 @@ public class Professeur extends Personne {
     }
 
     public String toString() {
-        return this.getNom() + this.getPrenom() + " née le " + this.getDate()
-                + " est un " + this.getCategorie() + " qui enseigne " + super.toString();
+        return super.getNom() + " " +  super.getPrenom() + " née le " + super.getDate()
+                + " est un " + super.getCategorie() + " qui enseigne " + this.matiere_enseigne;
     }
 }

@@ -10,7 +10,7 @@ public class Eleves extends Personne {
     }
 
     public String toString() {
-        return this.getNom() + this.getPrenom() + " née le " + this.getDate()
-                + " est un " + this.getCategorie() + " qui est un élève de " + super.toString() + " année.";
+        return super.getNom() + " " + super.getPrenom() + " née le " + super.getDate()
+                + " est un " + super.getCategorie() + " qui est un élève de " + this.niveau + " année.";
     }
 }
