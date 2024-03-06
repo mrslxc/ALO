@@ -62,27 +62,26 @@ public class ClientTest {
     * on continue
     *
     * */
-    private static  void executeFichierDesOperations(Client client, String file){
+    private static void executeFichierDesOperations(Client client, String file){
         try {
-            Scanner sc = new Scanner(new File(file));
-            while (sc.hasNextLine()) {
-                while (sc.hasNext()){
-                    String numCompte = sc.next();
-                    String typeTransaction = sc.next();
-                    double montant = sc.nextDouble();
+            Scanner sc_ligne = new Scanner(new File(file));
+            while (sc_ligne.hasNextLine()) {
+                Scanner sc_element = new Scanner(sc_ligne.nextLine());
+                while (sc_element.hasNext()) {
+                    String numCompte = sc_element.next();
+                    String typeTransaction = sc_element.next();
+                    double montant = sc_element.nextDouble();
                     Account compte = client.getAccount(numCompte);
-                    if(compte != null){
-                        if(typeTransaction.equals("credit")){
+
+                    if (compte != null) {
+                        if (typeTransaction.equals("credit")) {
                             compte.credit(montant);
-                        }
-                        else if(typeTransaction.equals("debit")){
+                        } else if (typeTransaction.equals("debit")) {
                             compte.debit(montant);
-                        }
-                        else{
+                        } else {
                             System.out.println("Erreur: credit ou debit introuvable.");
                         }
-                    }
-                    else {
+                    } else {
                         System.out.println("Compte inexistant!");
                     }
                 }
