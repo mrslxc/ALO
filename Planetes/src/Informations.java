@@ -67,8 +67,9 @@ public class Informations {
     }
 
     public static void calculerMinCirconference(ArrayList<Planetes> tableauPlanete) {
-        long minCirconf = 0;
-        String nomPlanete = "";
+
+        long minCirconf = tableauPlanete.get(0).getCirconference();
+        String nomPlanete = tableauPlanete.get(0).getNom();
 
         for (Planetes planete : tableauPlanete) {
             if (planete.getCirconference() < minCirconf) {
@@ -77,7 +78,7 @@ public class Informations {
             }
         }
         System.out.println("La planète avec la plus petite circonférence est " +
-                nomPlanete + " avec une circonférence de " + minCirconf + " km.");
+                    nomPlanete + " avec une circonférence de " + minCirconf + " km.");
     }
 
     public static void calculerTotalSatellite(ArrayList<Planetes> tableauPlanete) {
