@@ -10,14 +10,24 @@ public class Informations {
         // lireDonnes("planetes.txt").forEach(System.out::println);
         ArrayList<Planetes> listePlanetes = lireDonnes("systemeSolaire.txt");
 
+        System.out.println("Liste des planètes : ");
         for (Planetes planete : listePlanetes) {
             System.out.println(planete);
         }
-
+        System.out.println("\n");
+        System.out.println("1e : Calculer la circonférence maximum des planètes ");
         calculerMaxCirconference(listePlanetes);
+        System.out.println("\n");
+        System.out.println("2e : Calculer la circonférence minimum des planètes ");
         calculerMinCirconference(listePlanetes);
+        System.out.println("\n");
+        System.out.println("3e : Calculer le nombre total de satellites dans le système solaire ");
         calculerTotalSatellite(listePlanetes);
+        System.out.println("\n");
+        System.out.println("4e : Calculer le rayon moyen des planètes ");
         calculerRayonMoyenPlanetes(listePlanetes);
+        System.out.println("\n");
+        System.out.println("5e : Calculer les planètes qui n'ont aucun satellite ");
         System.out.println(calculerPlaneteAucunSatellite(listePlanetes));
     }
 
@@ -57,8 +67,9 @@ public class Informations {
     }
 
     public static void calculerMinCirconference(ArrayList<Planetes> tableauPlanete) {
-        long minCirconf = 0;
-        String nomPlanete = "";
+
+        long minCirconf = tableauPlanete.get(0).getCirconference();
+        String nomPlanete = tableauPlanete.get(0).getNom();
 
         for (Planetes planete : tableauPlanete) {
             if (planete.getCirconference() < minCirconf) {
@@ -67,7 +78,7 @@ public class Informations {
             }
         }
         System.out.println("La planète avec la plus petite circonférence est " +
-                nomPlanete + " avec une circonférence de " + minCirconf + " km.");
+                    nomPlanete + " avec une circonférence de " + minCirconf + " km.");
     }
 
     public static void calculerTotalSatellite(ArrayList<Planetes> tableauPlanete) {
