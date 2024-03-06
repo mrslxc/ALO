@@ -92,12 +92,18 @@ public class ClientTest {
         }
     }
 
-    private static void testerOperations()
-    {
+    private static void testerOperations() {
         Client client = creerClientAvecComptes();
         executeFichierDesOperations(client, "AccountOperationData.txt");
+
+        // 1e Exercice : Création d'un client
+        System.out.println("// 1e Exercice : Création d'un client");
         System.out.println(client);
+        System.out.println("\n");
+        // 2e Exercice : Obtenir les comptes des clients
         System.out.println(client.getAccounts());
+        System.out.println("\n");
+        // 3e Exercice : Obtenir les comptes des clients (en liste)
         for(Account element: client.getAccounts()) {
             System.out.println(element);
         }
