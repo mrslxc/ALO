@@ -1,8 +1,6 @@
 //vos noms et prénoms ici
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,7 +10,7 @@ public class ExecOMetro
 
     // tarif des billets selon les zones traversées
     // ici on a choisi la correspondance directe : le nombre de zones est la position dans la liste (d'où le -1 en position 0)
-    public static final ArrayList<Double>  TARIF_PAR_NB_ZONES/*_traversées*/ = new ArrayList<>(java.util.List.of( -1.0, 2.5, 3.5, 5.0, 5.5));
+    public static final ArrayList<Double>  TARIF_PAR_NB_ZONES /*_traversées*/ = new ArrayList<>(java.util.List.of( -1.0, 2.5, 3.5, 5.0, 5.5));
 
     public static final String NOM_FICHIER_ARRETS = "C:\\Users\\itslx\\Documents\\GitHub\\ALO\\ALO-ER-avril-23\\ALO-avril-2023\\OMetro\\ligneMM.csv";
     public static final int CODE_ARRET_INCONNU = -1;
@@ -111,7 +109,7 @@ public class ExecOMetro
     private static int getPositionArret(String nomArret, ArrayList<Arret> ligneMM) {
         for (int i = 0; i < ligneMM.size(); i++) {
             if (ligneMM.get(i).getNomArret().equals(nomArret)) {
-                return i + 1;
+                return i;
             }
         }
         return CODE_ARRET_INCONNU; // en cas d'erreur de position -> -1
@@ -143,30 +141,72 @@ public class ExecOMetro
             minPosition = positionArriver;
             maxPosition = positionDepart;
         }
-
-        /*
-        * On crée une boucle pour parcourir la liste des arrêts
-        * On récupère l'arrêt à partir de la position minimale et maximale
-        * On affiche le nom de l'arrêtw
-        * */
-        for (int i = minPosition; i <= maxPosition; i++) {
-            Arret arret = ligneMM.get(i - 1); // Décalage de 1 pour obtenir l'indice correct dans la liste
-            System.out.println(arret.getNomArret());
-        }
-
         // Création et remplissage de la nouvelle liste avec les arrêts entre les positions de départ et d'arrivée
         ArrayList<Arret> lstArrets = new ArrayList<>();
         for (int i = minPosition; i <= maxPosition; i++) {
             Arret arret = ligneMM.get(i - 1); // Décalage de 1 pour obtenir l'indice correct dans la liste
             lstArrets.add(arret);
         }
+        /*
+         * On crée une boucle pour parcourir la liste des arrêts
+         * On récupère l'arrêt à partir de la position minimale et maximale
+         * On affiche le nom de l'arrêt
+         * */
+        System.out.println("Liste des " + lstArrets.size() + " arrêts entre " + nomArretDepart + " à " + nomArretArrivee);
+        for (int i = minPosition; i <= maxPosition; i++) {
+            Arret arret = ligneMM.get(i); // Décalage de 1 pour obtenir l'indice correct dans la liste
+            System.out.println(arret.getNomArret());
+        }
     }
 
-    private static void testQuestionB4(String nomArretDepart, String nomArretArrivee, ArrayList<Arret> ligneMM)
-    {
-        System.out.println("Prix pour un trajet de "+nomArretDepart+" à "+nomArretArrivee);
+    private static void testQuestionB4(String nomArretDepart, String nomArretArrivee, ArrayList<Arret> ligneMM) {
+        // On crée une liste pour stocker les arrêts
+        ArrayList<Arret> arretsTrajet = new ArrayList<>();
         int positionDepart = getPositionArret(nomArretDepart, ligneMM);
         int positionArriver = getPositionArret(nomArretArrivee, ligneMM);
+        
+        // On compare, comme au B3, la position du départ et de l'arrivée
+        if (positionDepart < positionArriver) {
+            for (int i = positionDepart; i <= positionArriver; i++) {
+                arretsTrajet.add(ligneMM.get(i));
+            }
+        } else {
+            for (int i = positionDepart; i >= positionArriver; i--) {
+                arretsTrajet.add(ligneMM.get(i));
+            }
+        }
+        
+        System.out.println("Prix pour un trajet de "+nomArretDepart+" à "+nomArretArrivee);
+        // Vu que la B3, on affichait les différents arrêts, et bien on instancie la question
+        System.out.println("Liste des " + arretsTrajet.size() + " arrêts entre " + nomArretDepart + " et " + nomArretArrivee);
+        for (Arret arret : arretsTrajet) {
+            System.out.println(arret.getNomArret());
+        }
+        System.out.println("\n");
+        
+        // On crée une variable pour stocker la zone, en appelant de la liste "arretTrajet"
+        String zoneDepart = arretsTrajet.get(0).getNomZone();
+        
+        // On initialise la variable de la zone à 1
+        int nbZonesTraverses = 1;
+        
+        /* 
+        * A chaque tour de boucle, on récupère le nom des arrêts
+        * Si l'arrêt récupéré corresponds bien à la zone définis
+        * Alors on compte +1 par zone traversés et on stocke la zone de départ
+        * */
+        for (int i = 1; i < arretsTrajet.size(); i++) {
+            Arret arretActuel = arretsTrajet.get(i);
+            if (!arretActuel.getNomZone().equals(zoneDepart)) {
+                nbZonesTraverses++;
+                zoneDepart = arretActuel.getNomZone();
+            }
+        }
+        
+        // On affiche le résultat étant donné que TARIF_NB_PAR_ZONE est une liste, et 
+        // bien la variable en paramètre est le nombre de zone
+        System.out.println("Tarif appliqué pour " + nbZonesTraverses + " zones traversées: "
+                + TARIF_PAR_NB_ZONES.get(nbZonesTraverses) + " euros");
     }
 
     //vos méthodes ici
@@ -202,7 +242,7 @@ public class ExecOMetro
     {
         ArrayList<Arret> r = null;
         try {
-            r = java.util.Arrays.stream(java.nio.file.Files.readString(java.nio.file.Paths.get("ligneMM.csv")).split("\n")).map(l -> ((java.util.function.Function<String[], Arret>) (t -> new Arret(t[0], t[1], Integer.valueOf(t[2]), Integer.valueOf(t[3])))).apply(l.split(";"))).collect(java.util.stream.Collectors.toCollection(ArrayList::new));
+            r = java.util.Arrays.stream(java.nio.file.Files.readString(java.nio.file.Paths.get("ligneMM.csv")).split("\n")).map(l -> new Arret(l.split(";")[0], l.split(";")[1], Integer.parseInt(l.split(";")[2]), Integer.parseInt(l.split(";")[3]))).collect(java.util.stream.Collectors.toCollection(ArrayList::new));
         }
         catch (Exception e) {
             System.out.println("APPELEZ LE SURVEILLANT !");throw new RuntimeException(e);
