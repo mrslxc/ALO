@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Listener {
     private String nom;
@@ -84,37 +85,26 @@ public class Listener {
 
     public void afficherQuestion4() {
         System.out.println("\n");
-        calculerRepartitionGenreMusicaux();
+        afficherRepartitionGenreMusicaux();
     }
 
-    public void calculerRepartitionGenreMusicaux() {
-        int compteurPop = 0;
-        int compteurRock = 0;
-        int compteurRap = 0;
-        int compteurClassique = 0;
-        int compteurJazz = 0;
-        int compteurAutre = 0;
+    public void afficherRepartitionGenreMusicaux() {
+        // Initialiser un HashMap pour stocker les compteurs de chaque genre
+        HashMap<String, Integer> compteursGenres = new HashMap<>();
 
+        // Parcourir chaque chanson dans la playlist
         for (Song chanson : morceaux) {
-            if (chanson.getGenre().equals("Pop")) {
-                compteurPop++;
-            } else if (chanson.getGenre().equals("Rock")) {
-                compteurRock++;
-            } else if (chanson.getGenre().equals("Rap")) {
-                compteurRap++;
-            } else if (chanson.getGenre().equals("Classique")) {
-                compteurClassique++;
-            } else if (chanson.getGenre().equals("Jazz")) {
-                compteurJazz++;
-            } else {
-                compteurAutre++;
-            }
+            String genre = chanson.getGenre().toLowerCase(); // Convertir en minuscules pour normaliser le genre
+
+            // Incrémenter le compteur correspondant au genre de la chanson
+            compteursGenres.put(genre, compteursGenres.get(genre) + 1);
         }
-        System.out.println("La playlist contient " + compteurPop + " chansons de genre Pop");
-        System.out.println("La playlist contient " + compteurRock + " chansons de genre Rock");
-        System.out.println("La playlist contient " + compteurRap + " chansons de genre Rap");
-        System.out.println("La playlist contient " + compteurClassique + " chansons de genre Classique");
-        System.out.println("La playlist contient " + compteurJazz + " chansons de genre Jazz");
-        System.out.println("La playlist contient " + compteurAutre + " chansons de genre Autre");
+
+        // Afficher le nombre de chansons pour chaque genre
+        for (String genre : compteursGenres.keySet()) {
+            int compteur = compteursGenres.get(genre);
+            System.out.println("Pour le genre " + genre + ", il y a " + compteur + " chansons dans la playlist.");
+        }
     }
+
 }
