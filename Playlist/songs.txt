@@ -1,0 +1,30 @@
+ Titre;Artiste;Genre;Duree
+Tailler la route;Grand Corps Malade;rap;3,45
+Des graines;Gaël Faye;rap;3,37
+J'aurais pu croire;IAM;rap;5,15
+La fin de leur monde;IAM;rap;10,10
+Monsieur madame;La Canaille;rap;3,36
+La couleur des Emotions;Dooz Kawa;rap;2,06
+No Escape from Balkan;Dubioza kolektiv;balkan pop;4
+Galvanize;The Chemical Brothers;electro;6,34
+Go;The Chemical Brothers;electro;4,21
+Firestarter;The Prodigy;rock;4,40
+Bombtrack;Rage Against The Machine;rock;4,03
+How I could Just Kill a man;Rage Against The Machine;rock;4,03
+Killing in the name of;Rage Against The Machine;rock;5,13
+Insane in the Brain;Cypress Hill;hiphop;3,28
+CREAM;Wu-Tang Clan;hiphop;4,12
+Shimmy Shimmy Ya;Ol' Dirty Bastard;hiphop;2,41
+Jump;Kris Kross;hiphop;3,15
+Juicy;The Notorious BIG;hiphop;5,03
+Dear Mathilde;Muthoni Drummer Queen;afro;1,15
+Suzie Noma;Muthoni Drummer Queen;afro;3,05
+Captain;Danitsa;rap;3,05
+Remember me;Danitsa;rap;3,16
+I've got that tune;Chinese man;electro rap;4,30
+Positively Inclined;Wax Tailor;electro rap;3,40
+From Gaza, With Love;Saint Levant;electro rap;2
+Can't hold us;Macklemore;electro rap;4,18
+Fata Morgana;Suma Covjek;balkan pop;2,59
+Ana maarouf;Suma Covjek;balkan pop;3,28
+A ton étoile;Noir Désir;rock;4,24
