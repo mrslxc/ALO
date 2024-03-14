@@ -7,7 +7,7 @@ Monsieur madame;La Canaille;rap;3,36
 La couleur des Emotions;Dooz Kawa;rap;2,06
 No Escape from Balkan;Dubioza kolektiv;balkan pop;4
 Galvanize;The Chemical Brothers;electro;6,34
-Go;The Chemical Brothers;electro;4,21
+Go;The Chemical Brothers;electro;4,1
 Firestarter;The Prodigy;rock;4,40
 Bombtrack;Rage Against The Machine;rock;4,03
 How I could Just Kill a man;Rage Against The Machine;rock;4,03

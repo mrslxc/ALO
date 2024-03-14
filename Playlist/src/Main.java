@@ -11,7 +11,7 @@ public class Main {
         motaz.setPlayList(playList);
         motaz.afficherQuestion1();
         motaz.afficherQuestion2();
-        motaz.afficherQuestion4();
+
 
         Flight flightAms = new Flight("Genève", "Amsterdam", 0.5);
         Listener me = new Listener("Me myself & I", flightAms);
@@ -19,9 +19,18 @@ public class Main {
         me.afficherTempsVolOKNotOK();
 
         //motaz.afficherQuestion3();
+        motaz.afficherQuestion4();
+        motaz.afficherMorceauPlusLong();
+
+        // Question 7
+        Song song = new Song("title", "artist", 10.10, "rap");
+        Song anotherSong = new Song("title2", "artist2", 12, "rap");
+
+        //me.getDiffMinutes(song, anotherSong);
+        System.out.println("Question 7");
+        me.afficherDiffMinutes(song, anotherSong);
         //etc
     }
-
 
     public static ArrayList<Song> readData(String fileName) {
         ArrayList<Song> playList = new ArrayList<>();
@@ -34,7 +43,8 @@ public class Main {
                 String title = scElements.next();
                 String artist = scElements.next();
                 String genre = scElements.next();
-                Double dureeEnMin = scElements.nextDouble();
+                String dureeString = scElements.next();
+                Double dureeEnMin = Song.parseDuration(dureeString);
                 //--------------------- COMPLETER CETTE PARTIE DUCODE---------------------
                 Song s = new Song(title, artist, dureeEnMin, genre);
                 //--------------------- FIN ---------------------
@@ -45,4 +55,8 @@ public class Main {
         }
         return playList;
     }
+
+//    public static double casterMinutesEnSecondes(double duree) {
+//        return dure;
+//    }
 }
