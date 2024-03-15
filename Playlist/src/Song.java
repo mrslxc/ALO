@@ -10,6 +10,9 @@ public class Song {
         this.duree = duree;
         this.genre = genre;
     }
+    // La fonction parseDuration n'étant pas fonctionnelle pour délimiter les minutes et les secondes 
+    // Par exemple, une string étant un double soit 4,24 -> (4)(24)
+    /* 
     public static double parseDuration(String duration) {
         // Divisez la chaîne en parties en utilisant le point comme séparateur
         String[] parts = duration.split("//,");
@@ -23,6 +26,7 @@ public class Song {
         // Retourne la somme des minutes et des secondes
         return minutes + seconds;
     }
+    */
 
     public String getTitre() {
         return titre;
