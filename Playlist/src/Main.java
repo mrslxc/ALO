@@ -20,15 +20,16 @@ public class Main {
 
         //motaz.afficherQuestion3();
         motaz.afficherQuestion4();
-        motaz.afficherMorceauPlusLong();
+        motaz.afficherQuestion5();
+        motaz.afficherQuestion6();
 
         // Question 7
-        Song song = new Song("title", "artist", 10.10, "rap");
-        Song anotherSong = new Song("title2", "artist2", 12, "rap");
+        Song song = new Song("title", "artist", 12, "rap");
+        Song anotherSong = new Song("title2", "artist2", 10.90, "rap");
 
         //me.getDiffMinutes(song, anotherSong);
         System.out.println("Question 7");
-        me.afficherDiffMinutes(song, anotherSong);
+        me.afficherQuestion7(song, anotherSong);
         //etc
     }
 
@@ -60,8 +61,4 @@ public class Main {
         }
         return playList;
     }
-
-//    public static double casterMinutesEnSecondes(double duree) {
-//        return dure;
-//    }
 }
