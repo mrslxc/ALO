@@ -43,10 +43,15 @@ public class Main {
                 String title = scElements.next();
                 String artist = scElements.next();
                 String genre = scElements.next();
-                String dureeString = scElements.next();
-                Double dureeEnMin = Song.parseDuration(dureeString);
+                Double dureeEnMin = scElements.nextDouble();
+                
+                //La string aurait ete valable si la ParseDuration aurait été valide
+                //String dureeString = scElements.next();
+                //Double dureeEnMin = scElements.parseDuration(dureeEnString);
+                
                 //--------------------- COMPLETER CETTE PARTIE DUCODE---------------------
                 Song s = new Song(title, artist, dureeEnMin, genre);
+                Song s2  = new Song(title, artist, dureeEnMin, genre);
                 //--------------------- FIN ---------------------
                 playList.add(s);
             }
