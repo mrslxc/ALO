@@ -143,20 +143,38 @@ public class Listener {
         return diff;
     }
 
-    public void afficherDiffMinutes(Song chanson1, Song chanson2) {
+    public double formatMinutes(Song chanson1, Song chanson2) {
+
         Formatter format = new Formatter();
         double diff = getDiffMinutes(chanson1, chanson2);
 
-        int minutes = (int) diff; // caster la partie entière de la différence, exemple : 4.5 -> 4
-        double secondes = (diff - minutes) * 60; // caster la partie décimale de la différence, exemple : 4.5 -> 0.5 -> 30
+        double minutes = (int) diff; //caster la partie entière de la différence, exemple : 4.5 -> 4
+        format.format(".%2f", minutes);
 
-        System.out.println("La différence de durée entre les chanosns " + chanson1 + " et " + chanson2 + " est de "
-                + minutes + " minutes et " + secondes + " secondes");
+        return (int) minutes;
+    }
+
+    public double formatSecondes(Song chanson1, Song chanson2) {
+
+        Formatter format = new Formatter();
+        double diff = getDiffMinutes(chanson1, chanson2);
+        double minutes = formatMinutes(chanson1, chanson2);
+
+        double secondes = (diff - minutes) * 60; //caster la partie décimale de la différence, exemple : 4.5 -> 0.5 -> 30
+        format.format(".%2f", secondes);
+
+        return (int) secondes;
+    }
+
+    public void afficherQuestion7(Song chanson1, Song chanson2) {
+        double minutes = formatMinutes(chanson1, chanson2);
+        double secondes = formatSecondes(chanson1, chanson2);
+
+        System.out.println("La différence de durée entre les chanosns " + chanson1.getTitre() + " et " + chanson2.getTitre() + " est de "
+                + (int) minutes + " minutes et " + (int) secondes+ " secondes");
     }
 
     public void getDiffMinutesPourToutesLesMusiques() {
-        double diff = 0;
-
         for (Song song : morceaux) {
             for (Song song2 : morceaux) {
                 getDiffMinutes(song, song2);
@@ -175,11 +193,30 @@ public class Listener {
         return morceau.getTitre();
     }
 
-    public void afficherMorceauPlusLong() {
+    public void afficherQuestion5() {
         String morceau = morceauLePlusLong();
 
         System.out.println("\n");
         System.out.println("Question 5 : ");
         System.out.println("Le morceau le plus long est : " + morceau);
+    }
+
+    public String morceauLeMoinsLong() {
+        Song morceau = morceaux.get(0);
+
+        for (Song song : morceaux) {
+            if (song.getDuree() < morceau.getDuree()) {
+                morceau = song;
+            }
+        }
+        return morceau.getTitre();
+    }
+
+    public void afficherQuestion6() {
+        String morceau = morceauLeMoinsLong();
+
+        System.out.println("\n");
+        System.out.println("Question 6 : ");
+        System.out.println("Le morceau le moins long est : " + morceau);
     }
 }
