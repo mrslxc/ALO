@@ -38,7 +38,7 @@ public class Listener {
         System.out.println("L'auditeur " + this.nom + " a les chansons suivantes dans sa playlist :");
 
         for (Song chanson : morceaux) {
-            System.out.println(chanson);
+            System.out.println(chanson.getTitre());
         }
     }
 
@@ -97,8 +97,6 @@ public class Listener {
             return false;
         }
     }
-
-
 
     public void afficherRepartitionGenreMusicaux() {
         HashMap<String, Integer> repartition = new HashMap<>();
@@ -178,6 +176,15 @@ public class Listener {
         for (Song song : morceaux) {
             for (Song song2 : morceaux) {
                 getDiffMinutes(song, song2);
+            }
+        }
+    }
+
+    public void afficherQuestion7PourToutesLesMusiques() {
+        System.out.println("Question 7 : ");
+        for (Song song : morceaux) {
+            for (Song song2 : morceaux) {
+                afficherQuestion7(song, song2);
             }
         }
     }

@@ -26,10 +26,9 @@ public class Main {
         // Question 7
         Song song = new Song("title", "artist", 12, "rap");
         Song anotherSong = new Song("title2", "artist2", 10.90, "rap");
-
-        //me.getDiffMinutes(song, anotherSong);
-        System.out.println("Question 7");
         me.afficherQuestion7(song, anotherSong);
+
+        me.afficherQuestion7PourToutesLesMusiques();
         //etc
     }
 
