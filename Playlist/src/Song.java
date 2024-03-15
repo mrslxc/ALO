@@ -43,8 +43,4 @@ public class Song {
     public String getGenre() {
         return genre;
     }
-
-    public String toString() {
-        return "'" + this.titre + "', de " + this.artiste + " avec commme genre " + this.genre + ", dure " + this.duree + " minutes";
-    }
 }
