@@ -20,14 +20,27 @@ public class Magazine {
    }
 
     public int nbSemaine() {
-
         return switch (frequence) {
             case "hebdo" -> 1;
             case "bimensuel" -> 2;
             case "mensuel" -> 4;
             case "bimestriel" -> 8;
             default -> 0;
-        };
+        }
+
+        /*
+        if (this.frequence = "hebdo") {
+            return 1;
+        } else if (this.frequence = "bimensuel") {
+            return 2;
+        } else if (this.frequence = "mensuel") {
+            return 4;
+        } else if (this.frequence = "bimestriel") {
+            return 8;
+        } else {
+            return 0;
+        }
+        */
    }
 
     public String toString() {

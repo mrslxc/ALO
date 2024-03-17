@@ -122,10 +122,10 @@ public class ExecOMetro
     }
 
     private static void testQuestionB3(String nomArretDepart, String nomArretArrivee, ArrayList<Arret> ligneMM) {
-        System.out.println("Trajet de "+nomArretDepart+" à "+nomArretArrivee);
+        System.out.println("Trajet de " + nomArretDepart + " à " + nomArretArrivee);
 
-        ArrayList<Arret> lstArrets = new ArrayList<>();
         // On récupère la position de l'arrêt de départ et d'arrivée
+        ArrayList<Arret> lstArrets = new ArrayList<>();
         int positionDepart = getPositionArret(nomArretDepart, ligneMM);
         int positionArriver = getPositionArret(nomArretArrivee, ligneMM);
 
@@ -134,6 +134,7 @@ public class ExecOMetro
                 lstArrets.add(ligneMM.get(i));
             }
         } else {
+            // On crée une boucle pour aller en arrière et comparer la position à la position d'arriv
             for (int i = positionDepart; i >= positionArriver; i--) {
                 lstArrets.add(ligneMM.get(i));
             }
