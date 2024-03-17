@@ -22,7 +22,8 @@ public class Flight {
     }
 
     public String toString() {
-        return "départ de " + this.villeDepart + ", avec destination " + this.villeDestination + " " +
+        return "départ de " + this.villeDepart + ", avec destination " 
+        + this.villeDestination + " " +
                 "à une durée de " + this.duree + " heures";
     }
 }

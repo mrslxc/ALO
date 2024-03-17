@@ -11,9 +11,11 @@ public class Informations {
         ArrayList<Planetes> listePlanetes = lireDonnes("systemeSolaire.txt");
 
         System.out.println("Liste des planètes : ");
+
         for (Planetes planete : listePlanetes) {
             System.out.println(planete);
         }
+        
         System.out.println("\n");
         System.out.println("1e : Calculer la circonférence maximum des planètes ");
         calculerMaxCirconference(listePlanetes);

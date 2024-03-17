@@ -34,15 +34,21 @@ public class Informations {
                 sc_element.useDelimiter("/");
                 String nom = sc_element.next();
                 String prenom = sc_element.next();
+
+                // On scan la date en tant que chaine de String
                 String date = sc_element.next();
 
+                // On met en forme la date avec un DateTimeFormatter
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                 LocalDate localDate = LocalDate.parse(date, formatter);
 
                 String categorie = sc_element.next();
 
                 if (categorie.equals("professeur")) {
+                    // On scan l'element qui suit l'element precedent
                     String matiere = sc_element.next();
+
+                    // On creer une nouvelle instance de classe et on ajoute dans la liste
                     tableauPersonne.add(new Professeur(nom, prenom, localDate, categorie, matiere));
                 } else {
                     String niveau = sc_element.next();

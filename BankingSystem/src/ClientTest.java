@@ -48,8 +48,7 @@ public class ClientTest {
         return client;
     }
 
-    private static void testerLireComptes()
-    {
+    private static void testerLireComptes() {
         Client client = creerClientAvecComptes();
         System.out.println("Client: " + client);
         System.out.println(client.getAccounts());
@@ -72,7 +71,11 @@ public class ClientTest {
                     String typeTransaction = sc_element.next();
                     double montant = sc_element.nextDouble();
                     Account compte = client.getAccount(numCompte);
-
+                    /* 
+                    On vérifie si le compte il est null
+                    Puis on vérifie si la transaction qui est scanner est un crédit ou un débit
+                    */
+                   
                     if (compte != null) {
                         if (typeTransaction.equals("credit")) {
                             compte.credit(montant);

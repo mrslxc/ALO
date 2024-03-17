@@ -28,7 +28,7 @@ public class Main {
         Song anotherSong = new Song("title2", "artist2", 10.90, "rap");
         me.afficherQuestion7(song, anotherSong);
 
-        me.afficherQuestion7PourToutesLesMusiques();
+        me.afficherQuestion7();
         //etc
     }
 

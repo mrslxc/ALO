@@ -180,7 +180,7 @@ public class Listener {
         }
     }
 
-    public void afficherQuestion7PourToutesLesMusiques() {
+    public void afficherQuestion7() {
         System.out.println("Question 7 : ");
         for (Song song : morceaux) {
             for (Song song2 : morceaux) {
