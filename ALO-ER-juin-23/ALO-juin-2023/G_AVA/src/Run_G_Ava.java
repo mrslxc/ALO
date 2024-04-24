@@ -44,43 +44,35 @@ public class Run_G_Ava
             Scanner sc = new Scanner(new File(nomFichier));
             sc.nextLine();
             while (sc.hasNextLine()) {
-
                 Scanner scElements = new Scanner(sc.nextLine());
                 scElements.useDelimiter(";");
                 String nom = scElements.next();
                 String genre = scElements.next();
                 boolean estGenre;
-
                 if (genre.equals("F")) {
                     estGenre = true;
                 } else {
                     estGenre = false;
                 }
-
                 String canton = scElements.next();
                 String type = scElements.next();
                 int anciennete = scElements.nextInt();
 
+                AuSol auSol;
                 if (type.equals("Admin")) {
-                    String specialite = scElements.next();
-                    int etage = scElements.nextInt();
-                    int numBureau = scElements.nextInt();
+                    String refBureau = scElements.next() + scElements.next() + scElements.next();
+                    auSol = new DeService(nom, estGenre, canton, anciennete, refBureau);
 
-                    String referenceBureau = specialite + etage + numBureau;
-                    Admin admin1 = new Admin(nom, estGenre, canton, anciennete, referenceBureau);
-
-                    lstStaff.add(admin1);
                 } else {
                     String specialite = scElements.next();
-                    DeService deService1 = new DeService(nom, estGenre, canton, anciennete, specialite);
-
-                    lstStaff.add(deService1);
+                    auSol = new Admin(nom, estGenre, canton, anciennete, specialite);
                 }
+                lstStaff.add(auSol);
             }
         } catch (FileNotFoundException e) {
             System.out.println("Fichier non trouvé");
         }
-        return null;
+        return lstStaff;
     }
 
 

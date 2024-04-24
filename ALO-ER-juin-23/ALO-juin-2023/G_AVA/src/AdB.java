@@ -1,5 +1,4 @@
-public class AdB extends Navigant
-{
+public class AdB extends Navigant {
     private boolean longCourrier;
 
     public AdB(String nom, boolean genre, String canton, int nbHeuresVol, boolean longCourrier)

@@ -5,4 +5,9 @@ public class DeService extends AuSol {
         super(nom, genre, canton, anciennete);
         this.specialite = specialite;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " comme " + this.specialite;
+    }
 }
