@@ -1,0 +1,16 @@
+Thumper 1   oui 2   11  180
+Oreo    3   non 5	13  260
+Daisy   1   oui 14  8   330
+Bella   3   oui 7   6   180
+Bunny   3   oui 4   5   440
+Charlie 1   oui 10  13  250
+Lily    3	non	12	9	230
+Lola    3	non	11	10	280
+Oliver  1	oui	8	10	160
+Lucy    2	oui	2	8	360
+Coco    3	oui	15	9	410
+Jack    3	oui	1	7	170
+Molly   1	non	8	4	260
+Peanut	2	oui	1	12	350
+Bailey	2	non	6	7	050
+Clover	1	non	11	3	110
