@@ -10,9 +10,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2fXOrXpn5PvXeBZLKfc8nnsZbWt" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -23,8 +23,9 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/itslx/Documents/GitHub/ALO/ALO-ER-juin-23",
+    "last_opened_file_path": "C:/Users/itslx/Documents/GitHub/ALO/ALO-ER-juin-23/ALO-juin-2023/G_AVA",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }

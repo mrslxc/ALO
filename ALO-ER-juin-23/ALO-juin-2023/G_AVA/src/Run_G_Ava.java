@@ -1,7 +1,10 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Run_G_Ava
 {
@@ -33,10 +36,51 @@ public class Run_G_Ava
         System.out.println(LF+"Les années restant à travailler pour nos collaborateurs au sol");
         //A COMPLETER
     }
+    // A MODIFIER sauf le paramètre
+    private static ArrayList<AuSol> lireDonneesPartieA(String nomFichier) {
+        ArrayList<AuSol> lstStaff = new ArrayList<>();
+        try
+        {
+            Scanner sc = new Scanner(new File(nomFichier));
+            sc.nextLine();
+            while (sc.hasNextLine()) {
 
-    private static ArrayList<AuSol> lireDonneesPartieA(String nomFichier) // A MODIFIER sauf le paramètre
-    {
-         return null;// A MODIFIER !
+                Scanner scElements = new Scanner(sc.nextLine());
+                scElements.useDelimiter(";");
+                String nom = scElements.next();
+                String genre = scElements.next();
+                boolean estGenre;
+
+                if (genre.equals("F")) {
+                    estGenre = true;
+                } else {
+                    estGenre = false;
+                }
+
+                String canton = scElements.next();
+                String type = scElements.next();
+                int anciennete = scElements.nextInt();
+
+                if (type.equals("Admin")) {
+                    String specialite = scElements.next();
+                    int etage = scElements.nextInt();
+                    int numBureau = scElements.nextInt();
+
+                    String referenceBureau = specialite + etage + numBureau;
+                    Admin admin1 = new Admin(nom, estGenre, canton, anciennete, referenceBureau);
+
+                    lstStaff.add(admin1);
+                } else {
+                    String specialite = scElements.next();
+                    DeService deService1 = new DeService(nom, estGenre, canton, anciennete, specialite);
+
+                    lstStaff.add(deService1);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Fichier non trouvé");
+        }
+        return null;
     }
 
 

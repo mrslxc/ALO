@@ -31,7 +31,7 @@ public class Employe
 
     @Override
     public String toString() {
-        return civilité(genre) + nom + " habite "+ canton ;
+        return civilité(genre) + this.nom + " habite " + this.canton + 
     }
 
     private String civilité(boolean genre) {
