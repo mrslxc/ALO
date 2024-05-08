@@ -34,7 +34,10 @@ public class Run_G_Ava
 
         //ci-dessous le récapitulatif des années à travailler
         System.out.println(LF+"Les années restant à travailler pour nos collaborateurs au sol");
-        //A COMPLETER
+        for (AuSol pers_ausol : groundStaff) {
+            int anneesRestantes = pers_ausol.calculerAnneeRestantes();
+            System.out.println(pers_ausol.getNom() + " : " + (anneesRestantes > 0 ? anneesRestantes : "retraite !"));
+        }
     }
     // A MODIFIER sauf le paramètre
     private static ArrayList<AuSol> lireDonneesPartieA(String nomFichier) {
@@ -75,6 +78,10 @@ public class Run_G_Ava
         return lstStaff;
     }
 
+    private static void calculerAnneeRestantes() {
+
+    }
+
 
    /*************** PARTIE B *****************************/
    private static void testPartie_B(ArrayList<Navigant> airCrew)
@@ -95,17 +102,45 @@ public class Run_G_Ava
     {
         System.out.println(LF+"=== Exo 1B ===");
 
+        int nbFemmes = 0;
+        for (Navigant nav_femme : airCrew) {
+            if (nav_femme.estFemme()) {
+                nbFemmes++;
+            }
+        }
+
+        int nbHommes = 0;
+        for (Navigant nav_hommes : airCrew) {
+            if (!nav_hommes.estFemme()) {
+                nbHommes++;
+            }
+        }
+        System.out.println("Il y a en pourcentage " + arrondi((double)nbFemmes / airCrew.size() * 100) +
+                "% de femmes et " + arrondi((double)nbHommes / airCrew.size() * 100) + "% d'hommes");
     }
 
     private static void exo2B_afficherPlusExperimente(ArrayList<Navigant> airCrew) //A COMPLETER
     {
         System.out.println(LF+"=== Exo 2B ===");
         // ici appel de la fonction pilotePlusExperimente qui renvoie une instance de Pilote
+        System.out.println("Le pilote le plus expérimenté est : " + pilotePlusExperimente(airCrew).getNom() + " avec "
+                + pilotePlusExperimente(airCrew).getNbHeuresVol() + " heures de vol");
     }
 
-    private static Pilote pilotePlusExperimente(ArrayList<Navigant> airCrew) //A COMPLETER
-    {
-         return null;//A MODIFIER !
+    private static Pilote pilotePlusExperimente(ArrayList<Navigant> airCrew) { //A COMPLETER
+       int maxHeures = 0;
+       Navigant personne = null;
+
+       for (Navigant nav : airCrew) {
+           if (nav instanceof Pilote) {
+               Pilote pilote = (Pilote) nav;
+               if (pilote.getNbHeuresVol() > maxHeures) {
+                   maxHeures = pilote.getNbHeuresVol();
+                   personne = pilote;
+               }
+           }
+       }
+       return (Pilote) personne;
     }
 
 
@@ -152,7 +187,7 @@ public class Run_G_Ava
     /*************************** METHODES FOURNIES - NE PAS MODIFIER ! *****************/
 
     //NE PAS MODIFIER, surtout le type du paramètre !
-    private static void vérificationLecture(ArrayList<? extends Object> liste)
+    private static void vérificationLecture(ArrayList<?> liste)
     {
         if ( liste != null)
             for ( Object e : liste )

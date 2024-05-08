@@ -6,6 +6,14 @@ public class AuSol extends Employe {
         this.anciennete = anciennete;
     }
 
+    public int getAnciennete() {
+        return anciennete;
+    }
+
+    public int calculerAnneeRestantes() {
+        return Employe.NB_ANNUITES_BASE - anciennete;
+    }
+
     @Override
     public String toString() {
         return super.toString() + " travaille " ;

@@ -8,6 +8,6 @@ public class DeService extends AuSol {
 
     @Override
     public String toString() {
-        return super.toString() + " comme " + this.specialite;
+        return super.toString() + "dans le bureau " + this.specialite;
     }
 }

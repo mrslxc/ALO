@@ -7,6 +7,6 @@ public class Admin extends AuSol {
     }
     @Override
     public String toString() {
-        return super.toString() + " dans le bureau " + this.referenceBureau;
+        return super.toString() + "comme " + this.referenceBureau;
     }
 }
