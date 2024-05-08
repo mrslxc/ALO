@@ -11,4 +11,8 @@ public class Pilote extends Navigant
         super(nom, genre, canton, nbHeuresVol);
         this.dateValidationBrevet = dateBrevet;
     }
+
+    public LocalDate getDateValidationBrevet() {
+        return dateValidationBrevet;
+    }
 }

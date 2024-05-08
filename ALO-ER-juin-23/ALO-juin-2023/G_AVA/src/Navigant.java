@@ -12,4 +12,8 @@ public class Navigant extends Employe
     {
         return nbHeuresVol;
     }
+
+    public void setNbHeuresVol(int heuresVol) {
+        this.nbHeuresVol = heuresVol;
+    }
 }

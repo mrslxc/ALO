@@ -2,9 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Run_G_Ava
 {
@@ -151,11 +149,24 @@ public class Run_G_Ava
         System.out.println("Liste des pilotes devant valider à nouveau leur brevet");
         ArrayList<Pilote> listePilotes = listerRevalidations(airCrew);
         //ici affichage de listePilotes
+
+        for (Pilote pilote : listePilotes) {
+            System.out.printf(pilote.getNom() + " - brevet en date du " + Pilote.DATE_FORMATTER.format(pilote.getDateValidationBrevet()) + LF);
+        }
     }
 
     private static ArrayList<Pilote> listerRevalidations(ArrayList<Navigant> airCrew)//A COMPLETER
     {
         ArrayList<Pilote> liste = new ArrayList<>();
+
+        for (Navigant nav : airCrew) {
+            if (nav instanceof Pilote) {
+                Pilote pilote = (Pilote) nav;
+                if (age(pilote.getDateValidationBrevet()) >= 5) {
+                    liste.add(pilote);
+                }
+            }
+        }
         //A COMPLETER
         return liste;
     }
@@ -164,7 +175,27 @@ public class Run_G_Ava
     public static void exo4B_afficherRepartition(ArrayList<Navigant> airCrew)//A COMPLETER
     {
         System.out.println(LF+"=== Exo 4B ===");
+        HashMap<String,Integer> hmRepartition = repartitionSelonLieuxDeResidence(airCrew);
+        System.out.println("Liste des cantons/départements de résidence");
+        System.out.println(hmRepartition.keySet());
+        System.out.println("Répartition des navigants par canton/département de résidence");
+        for (Map.Entry<String, Integer> entry : hmRepartition.entrySet()) {
+            System.out.println(entry.getKey() + " : " + entry.getValue());
+        }
 
+    }
+
+    private static HashMap<String, Integer> repartitionSelonLieuxDeResidence(ArrayList<Navigant> airCrew) {
+        HashMap<String, Integer> hmRepartition = new HashMap<>();
+        for (Navigant nav : airCrew) {
+            String canton = nav.getCanton();
+            if (!hmRepartition.containsKey(canton)) {
+                hmRepartition.put(canton, 1);
+            } else {
+                hmRepartition.put(canton, hmRepartition.get(canton) + 1);
+            }
+        }
+        return hmRepartition;
     }
 
 
@@ -173,10 +204,39 @@ public class Run_G_Ava
         System.out.println(LF+"=== Exo 5B ===");
         int[][] tableauSemaine = acquérirTableauHebdo();
         vérificationLecture(tableauSemaine);
-        //A COMPLETER
 
-        afficherStatHebdo(airCrew, 0, 0, 0);// A MODIFIER AVEC VOS COMPTEURS
-    }
+        int vacances = 0;
+        int maladie = 0;
+        int formation = 0;
+        int cptHeures = 0;
+
+        for (int i = 0; i < tableauSemaine.length; i++) {
+            for (int j = 0; j < tableauSemaine[i].length; j++) {
+                if (tableauSemaine[i][j] == CODE_VACANCES) {
+                    vacances++;
+                } else if (tableauSemaine[i][j] == CODE_SANTE) {
+                    maladie++;
+                } else if (tableauSemaine[i][j] == CODE_FORMATION) {
+                    formation++;
+                }
+                else {
+                    cptHeures += tableauSemaine[i][j];
+                }
+            }
+            // airCrew.get(i).setNbHeuresVol(airCrew.get(i).getNbHeuresVol() + cptHeures); // 982 + 18
+        }
+        
+        for (int i = 0; i < tableauSemaine.length; i++) {
+            int sommeHeuresSemaine = 0;
+            for (int j = 0; j < tableauSemaine[i].length; j++) {
+                if (tableauSemaine[i][j] != CODE_VACANCES && tableauSemaine[i][j] != CODE_SANTE && tableauSemaine[i][j] != CODE_FORMATION) {
+                    sommeHeuresSemaine += tableauSemaine[i][j];
+                }
+            }
+            airCrew.get(i).setNbHeuresVol(airCrew.get(i).getNbHeuresVol() + sommeHeuresSemaine);
+        }
+        afficherStatHebdo(airCrew, vacances, maladie, formation);
+    }// A MODIFIER AVEC VOS COMPTEURS
 
     private static void vérificationLecture(int[][] tab)
     {
@@ -189,7 +249,7 @@ public class Run_G_Ava
     //NE PAS MODIFIER, surtout le type du paramètre !
     private static void vérificationLecture(ArrayList<?> liste)
     {
-        if ( liste != null)
+        if ( liste != null )
             for ( Object e : liste )
                 System.out.println(e);
         else
