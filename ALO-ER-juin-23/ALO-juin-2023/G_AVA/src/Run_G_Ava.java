@@ -198,7 +198,33 @@ public class Run_G_Ava
         return hmRepartition;
     }
 
+    private static void exo5B_effectuerMaj_v2(ArrayList<Navigant> lst_airCrew) {
+        System.out.println(LF+"=== Exo 5B ===");
+        int[][] tabSemaineHebdo = acquérirTableauHebdo();
+        vérificationLecture(tabSemaineHebdo);
 
+        // Création des variables de comptage
+        int vacances = 0;
+        int maladie = 0;
+        int formation = 0;
+        int cpt = 0;
+
+        for (int i = 0; i < tabSemaineHebdo.length; i++) {
+            for (int j = 0; j < tabSemaineHebdo[i].length; j++) {
+                if (tabSemaineHebdo[i][j] == CODE_VACANCES) {
+                    vacances++;
+                } else if (tabSemaineHebdo[i][j] == CODE_SANTE) {
+                    maladie++;
+                } else if (tabSemaineHebdo[i][j] == CODE_FORMATION) {
+                    formation++;
+                } else {
+                    cpt += tabSemaineHebdo[i][j];
+                }
+            }
+            lst_airCrew.get(i).setNbHeuresVol(lst_airCrew.get(i).getNbHeuresVol() + cpt);
+        }
+        afficherStatHebdo(lst_airCrew, vacances, maladie, formation);
+    }
     private static void exo5B_effectuerMiseAJour(ArrayList<Navigant> airCrew)///A COMPLETER
     {
         System.out.println(LF+"=== Exo 5B ===");
@@ -223,7 +249,6 @@ public class Run_G_Ava
                     cptHeures += tableauSemaine[i][j];
                 }
             }
-            // airCrew.get(i).setNbHeuresVol(airCrew.get(i).getNbHeuresVol() + cptHeures); // 982 + 18
         }
         
         for (int i = 0; i < tableauSemaine.length; i++) {
