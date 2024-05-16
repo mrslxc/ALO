@@ -49,6 +49,7 @@ public class Run_G_Ava
                 scElements.useDelimiter(";");
                 String nom = scElements.next();
                 String genre = scElements.next();
+
                 boolean estGenre;
                 if (genre.equals("F")) {
                     estGenre = true;
