@@ -11,6 +11,13 @@ public class Vehicule
     private long prixAchat;
     private int kmAuCompteur;
     private LocalDate dateAcquisition;
+    private String actifLigne;
+
+    public Vehicule(int nbPassagersMax, long prixAchat, LocalDate dateAcquisition) {
+        this.nbPassagersMax = nbPassagersMax;
+        this.prixAchat = prixAchat;
+        this.dateAcquisition = dateAcquisition;
+    }
 
     public void setKmAuCompteur(int kmAuCompteur) {
         if(kmAuCompteur > 0)
@@ -29,16 +36,22 @@ public class Vehicule
         this.nbPassagersMax = nbPassagersMax;
     }
 
-    public Vehicule(int nbPassagersMax, long prixAchat, LocalDate dateAcquisition)
-    {
-        this.nbPassagersMax = nbPassagersMax;
-        this.prixAchat = prixAchat;
-        this.dateAcquisition = dateAcquisition;
+    public int getPrixAchat() {
+        return (int) prixAchat;
+    }
+
+    public int getKmAuCompteur() {
+        return kmAuCompteur;
     }
 
     @Override
     public String toString() {
         // return String.format("Véhicule (prix: CHF %d, nb. passagers max: %d) de type: ", prixAchat, nbPassagersMax);
-        return "Véhicule (prix: CHF " + prixAchat + ", nb. passagers max: " + nbPassagersMax + ") de type : ";
+        return "Véhicule (prix: CHF " + prixAchat + ", nb. passagers max: "
+                + nbPassagersMax + ") de type : ";
+    }
+
+    public String getActifLigne() {
+        return actifLigne;
     }
 }

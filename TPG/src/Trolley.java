@@ -34,7 +34,7 @@ public class Trolley extends Vehicule {
     @Override
     public String toString() {
         // return super.toString() + "Trolley{" + "tensionNeccessaire=" + tensionNeccessaire + ", moteurThermique=oui}";
-        return super.toString() + getClass().getName().toString() + " avec une tension de " + this.tensionNeccessaire + " et possède-t-il un moteur thermique? " + this.moteurThermique;
+        return super.toString() + getClass().getName() + " avec " + getKmAuCompteur();
     }
 }
 
