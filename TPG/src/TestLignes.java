@@ -26,8 +26,11 @@ public class TestLignes {
         System.out.println("\n 4. Afficher le nom de la ligne qui utilise le plus de véhicules :");
         // afficherLignePlusVehicules(lstVehicle);
 
-        System.out.println("\n 5. Afficher les véhicules de type Bus ayant plus de 300'000 km au compteur :");
+        System.out.println("\n 5. Afficher les véhicules ayant plus de 300'000 km au compteur :");
         afficherListeVehicules(lstVehicle);
+
+        System.out.println("\n 6. Afficher le véhicule ayant le moins de km au compteur :");
+        afficherVehiculesMoinsKm(lstVehicle);
     }
 
     public static ArrayList<Vehicule> lireDonnees(String nomFichier) {
@@ -58,10 +61,10 @@ public class TestLignes {
                 String moteurSecours = sc_ligne.hasNext() ? sc_ligne.next() : "";
 
                 if (type.equals("trolley")) {
-                    Vehicule vehicule = new Trolley(nbPassagers, prixAchat, dateAcquisition, tension, moteurSecours.equals("oui"));
+                    Vehicule vehicule = new Trolley(nbPassagers, prixAchat, dateAcquisition, km, tension, moteurSecours.equals("oui"));
                     lstVehicle.add(vehicule);
                 } else {
-                    Vehicule vehicule = new Bus(nbPassagers, prixAchat, dateAcquisition);
+                    Vehicule vehicule = new Bus(nbPassagers, prixAchat, dateAcquisition, km);
                     lstVehicle.add(vehicule);
                 }
             }
@@ -107,5 +110,39 @@ public class TestLignes {
             System.out.println(vehicule);
         }
         return lstVehicules;
+    }
+
+    public static ArrayList<Vehicule> afficherVehiculesMoinsKm(ArrayList<Vehicule> lstVehicules) {
+        // Initialiser minKm à une valeur élevée pour trouver le minimum
+        int minKm = lstVehicules.get(0).getKmAuCompteur();
+        // int minKm = Integer.MAX_VALUE;
+
+        // Trouver le nombre minimum de kilomètres au compteur
+        for (Vehicule vehicule : lstVehicules) {
+            if (vehicule.getKmAuCompteur() < minKm) {
+                minKm = vehicule.getKmAuCompteur();
+            }
+        }
+
+        // Créer une liste pour stocker les véhicules avec le nombre minimum de kilomètres
+        ArrayList<Vehicule> vehiculesMoinsKm = new ArrayList<>();
+
+        // Ajouter les véhicules avec le nombre minimum de kilomètres à la nouvelle liste
+        for (Vehicule vehicule : lstVehicules) {
+            if (vehicule.getKmAuCompteur() == minKm) {
+                vehiculesMoinsKm.add(vehicule);
+            }
+        }
+
+        // Afficher les véhicules avec le moins de kilomètres
+        System.out.println("Les véhicules avec le moins de km sont :");
+        for (Vehicule vehicule : vehiculesMoinsKm) {
+            System.out.println(vehicule);
+        }
+        return vehiculesMoinsKm;
+    }
+
+    public static void afficherCoutEntretienVehicule(ArrayList<Vehicule> lstVehicule) {
+        
     }
 }

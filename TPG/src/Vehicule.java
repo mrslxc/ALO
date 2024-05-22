@@ -13,10 +13,11 @@ public class Vehicule
     private LocalDate dateAcquisition;
     private String actifLigne;
 
-    public Vehicule(int nbPassagersMax, long prixAchat, LocalDate dateAcquisition) {
+    public Vehicule(int nbPassagersMax, long prixAchat, LocalDate dateAcquisition, int kmAuCompteur) {
         this.nbPassagersMax = nbPassagersMax;
         this.prixAchat = prixAchat;
         this.dateAcquisition = dateAcquisition;
+        this.kmAuCompteur = kmAuCompteur;
     }
 
     public void setKmAuCompteur(int kmAuCompteur) {

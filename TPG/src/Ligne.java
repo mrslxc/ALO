@@ -13,8 +13,8 @@ public class Ligne extends Vehicule {
     private boolean compatibleTrolley;
     private int tensionLigne;
 
-    public Ligne(int nbPassagersMax, long prixAchat, LocalDate dateAquisition, String nom, int tensionLigne) {
-        super(nbPassagersMax, prixAchat, dateAquisition);
+    public Ligne(int nbPassagersMax, long prixAchat, LocalDate dateAquisition, int kmAuCompteur, String nom, int tensionLigne) {
+        super(nbPassagersMax, prixAchat, dateAquisition, kmAuCompteur);
         this.nom = nom;
         this.tensionLigne = tensionLigne;
     }
