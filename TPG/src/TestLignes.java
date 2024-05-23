@@ -143,6 +143,6 @@ public class TestLignes {
     }
 
     public static void afficherCoutEntretienVehicule(ArrayList<Vehicule> lstVehicule) {
-        
+
     }
 }
