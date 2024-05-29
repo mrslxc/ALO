@@ -12,11 +12,9 @@ public class Ligne {
     private ArrayList<Integer> listDureeEntreArrets;
     private boolean compatibleTrolley;
     private int tensionLigne;
-    private int minutes;
 
-    public Ligne(String nom, int minutes, int tensionLigne) {
+    public Ligne(String nom, int tensionLigne) {
         this.nom = nom;
-        this.minutes = minutes;
         this.tensionLigne = tensionLigne;
 
     }
@@ -33,17 +31,12 @@ public class Ligne {
         this.nom = nom;
     }
 
-    // Retourne la liste des arrêts affichés depuis le scanner de TestLigne
     public ArrayList<String> getListeDesArrets() {
         return listeDesArrets;
     }
 
     public String ajouterArret () {
-        return nom;
-    }
-
-    public int ajouterMinutes () {
-        return minutes;
+        return   
     }
 
     @Override
