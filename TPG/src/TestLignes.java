@@ -34,6 +34,9 @@ public class TestLignes {
 
         System.out.println("\n 7. Afficher les couts d'entretiens des véhicules :");
         afficherCoutEntretienVehicule(lstVehicle);
+
+        System.out.println("\n 8. Afficher le nombre de lignes : :");
+        System.out.println(lireDonneesLigne("lignes.csv"));
     }
 
     public static ArrayList<Vehicule> lireDonnees(String nomFichier) {
@@ -91,11 +94,16 @@ public class TestLignes {
                 String nomLigne = sc_ligne.next();
                 int min = sc_ligne.nextInt();
                 String arret = sc_ligne.next();
+                String arretPrecdent = "";
 
-                Ligne ligne1 = new Ligne(nomLigne, 0);
+                if (!arretPrecdent.equals(arret)) {
+                    arretPrecdent = sc_ligne.nextLine();
+                }
 
-                ligne1.getLstArrets();
+                Ligne ligne1 = new Ligne(nomLigne, min, 0);
 
+                ligne1.ajouterArret();
+                ligne1.ajouterMinutes();
                 lstLignes.add(ligne1);
             }
         } catch (FileNotFoundException e) {
