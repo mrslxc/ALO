@@ -31,6 +31,9 @@ public class TestLignes {
 
         System.out.println("\n 6. Afficher le véhicule ayant le moins de km au compteur :");
         afficherVehiculesMoinsKm(lstVehicle);
+
+        System.out.println("\n 7. Afficher les couts d'entretiens des véhicules :");
+        afficherCoutEntretienVehicule(lstVehicle);
     }
 
     public static ArrayList<Vehicule> lireDonnees(String nomFichier) {
@@ -61,14 +64,16 @@ public class TestLignes {
                 String moteurSecours = sc_ligne.hasNext() ? sc_ligne.next() : "";
 
                 if (type.equals("trolley")) {
-                    Vehicule vehicule = new Trolley(nbPassagers, prixAchat, dateAcquisition, km, tension, moteurSecours.equals("oui"));
+                    Vehicule vehicule = new Trolley(marque, nbPassagers, prixAchat, dateAcquisition, km, tension, moteurSecours.equals("oui"));
+                    //Vehicule vehicule = new Trolley(prixAchat, dateAcquisition, km, tension, moteurSecours.equals("oui"));
                     lstVehicle.add(vehicule);
                 } else {
-                    Vehicule vehicule = new Bus(nbPassagers, prixAchat, dateAcquisition, km);
+                    Vehicule vehicule = new Bus(nbPassagers, marque, prixAchat, dateAcquisition, km);
+                    // Vehicule vehicule = new Bus(nbPassagers, prixAchat, dateAcquisition, km);
                     lstVehicle.add(vehicule);
                 }
             }
-        }  catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("Le fichier est introuvable !");
         }
         return lstVehicle;
@@ -135,7 +140,7 @@ public class TestLignes {
         }
 
         // Afficher les véhicules avec le moins de kilomètres
-        System.out.println("Les véhicules avec le moins de km sont :");
+        System.out.println("Le véhicule avec le moins de km est :");
         for (Vehicule vehicule : vehiculesMoinsKm) {
             System.out.println(vehicule);
         }
@@ -143,6 +148,47 @@ public class TestLignes {
     }
 
     public static void afficherCoutEntretienVehicule(ArrayList<Vehicule> lstVehicule) {
+        int totalCoutEntretien = 0;
+        int nombreVehicules = lstVehicule.size();
+        ArrayList<Integer> coutsEntretien = new ArrayList<>();
 
+        for (Vehicule vehicule : lstVehicule) {
+            int coutEntretien = 0;
+            int kmAuCompteur = vehicule.getKmAuCompteur();
+            int kmInterval = vehicule.getKmInterval();
+            int coutControle = vehicule.getCoutControle();
+            int coutControleAnnuel = vehicule.getCoutControleAnnuel();
+            int coutRafraichissement = vehicule.getNbPassagersMax() * 150;
+
+            // Calcul du coût d'entretien basé sur le kilométrage
+            while (kmAuCompteur >= kmInterval) {
+                coutEntretien += coutControle + coutRafraichissement;
+                kmAuCompteur -= kmInterval;
+            }
+
+            // Ajout du coût d'entretien annuel
+            coutEntretien += vehicule.getAnneesService() * coutControleAnnuel;
+
+            coutsEntretien.add(coutEntretien);
+            totalCoutEntretien += coutEntretien;
+
+            System.out.println("Le coût d'entretien pour le véhicule de type " + vehicule.getClass().getSimpleName() + " avec "
+                    + vehicule.getKmAuCompteur() + " km et " + vehicule.getAnneesService()
+                    + " années de service est: " + coutEntretien + " CHF.");
+        }
+
+        double coutMoyenEntretien = totalCoutEntretien / (double) nombreVehicules;
+        System.out.println("\nCoût moyen d'entretien de tous les véhicules: " + coutMoyenEntretien + " CHF.");
+
+        System.out.println("\nVéhicules dont le coût d'entretien journalier est supérieur à la moyenne:");
+        for (int i = 0; i < lstVehicule.size(); i++) {
+            Vehicule vehicule = lstVehicule.get(i);
+            double coutEntretienJournalier = coutsEntretien.get(i) / (double) (vehicule.getAnneesService() * 365);
+            if (coutEntretienJournalier > coutMoyenEntretien / 365) {
+                System.out.println("Véhicule de type " + vehicule.getClass().getSimpleName() + " avec "
+                        + vehicule.getKmAuCompteur() + " km et " + vehicule.getAnneesService()
+                        + " années de service a un coût d'entretien journalier de: " + coutEntretienJournalier + " CHF.");
+            }
+        }
     }
 }
