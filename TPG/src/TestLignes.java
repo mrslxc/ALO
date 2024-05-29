@@ -79,7 +79,22 @@ public class TestLignes {
         return lstVehicle;
     }
 
-    public static ArrayList<Ligne> lireDonneesLigne(String nomFichier)  
+    public static ArrayList<Ligne> lireDonneesLigne(String nomFichier) {
+        ArrayList<Ligne> lstLignes = new ArrayList<>();
+
+        try {
+            Scanner sc_ligne = new Scanner(new File(nomFichier));
+            sc_ligne.nextLine();
+
+            while (sc_ligne.hasNextLine()) {
+                
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e.fillInStackTrace());
+        }
+
+        return lstLignes;
+    }
 
     public static ArrayList<Vehicule> afficherNbBus(ArrayList<Vehicule> lstVehicle) {
         int nbBus = 0;
