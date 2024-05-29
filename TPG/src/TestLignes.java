@@ -87,12 +87,20 @@ public class TestLignes {
             sc_ligne.nextLine();
 
             while (sc_ligne.hasNextLine()) {
-                
+
+                String nomLigne = sc_ligne.next();
+                int min = sc_ligne.nextInt();
+                String arret = sc_ligne.next();
+
+                Ligne ligne1 = new Ligne(nomLigne, 0);
+
+                ligne1.getLstArrets();
+
+                lstLignes.add(ligne1);
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.fillInStackTrace());
         }
-
         return lstLignes;
     }
 

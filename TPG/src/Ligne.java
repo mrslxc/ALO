@@ -16,6 +16,11 @@ public class Ligne {
     public Ligne(String nom, int tensionLigne) {
         this.nom = nom;
         this.tensionLigne = tensionLigne;
+
+    }
+
+    public ArrayList<String> getLstArrets () {
+        return listeDesArrets;
     }
 
     public String getNom() {
@@ -28,6 +33,10 @@ public class Ligne {
 
     public ArrayList<String> getListeDesArrets() {
         return listeDesArrets;
+    }
+
+    public String ajouterArret () {
+        return  
     }
 
     @Override
