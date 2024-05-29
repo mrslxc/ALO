@@ -79,6 +79,8 @@ public class TestLignes {
         return lstVehicle;
     }
 
+    public static ArrayList<Ligne> lireDonneesLigne(String nomFichier)  
+
     public static ArrayList<Vehicule> afficherNbBus(ArrayList<Vehicule> lstVehicle) {
         int nbBus = 0;
         int nbTrolley = 0;

@@ -6,16 +6,14 @@ import java.util.ArrayList;
  *
  * @author Thomas Servettaz
  */
-public class Ligne extends Vehicule {
+public class Ligne {
     private String nom;
     private ArrayList<String> listeDesArrets;
     private ArrayList<Integer> listDureeEntreArrets;
     private boolean compatibleTrolley;
     private int tensionLigne;
-    private String marque;
 
-    public Ligne(String marque, int nbPassagersMax, long prixAchat, LocalDate dateAquisition, int kmAuCompteur, String nom, int tensionLigne) {
-        super(marque, nbPassagersMax, prixAchat, dateAquisition, kmAuCompteur);
+    public Ligne(String nom, int tensionLigne) {
         this.nom = nom;
         this.tensionLigne = tensionLigne;
     }
